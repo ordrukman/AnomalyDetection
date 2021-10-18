@@ -1,0 +1,3 @@
+/home/ordrukman/CLionProjects/AnomalyDetection/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ordrukman/CLionProjects/AnomalyDetection/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ordrukman/CLionProjects/AnomalyDetection/cmake-build-debug/CMakeFiles/AnomalyDetection.dir
