@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ordrukman/CLionProjects/AnomalyDetection/anomaly_detection_util.cpp">
+			<Option target="AnomalyDetection"/>
+		</Unit>
+		<Unit filename="/home/ordrukman/CLionProjects/AnomalyDetection/anomaly_detection_util.h">
+			<Option target="AnomalyDetection"/>
+		</Unit>
 		<Unit filename="/home/ordrukman/CLionProjects/AnomalyDetection/main.cpp">
 			<Option target="AnomalyDetection"/>
 		</Unit>

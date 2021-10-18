@@ -129,6 +129,30 @@ AnomalyDetection/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/build
 .PHONY : AnomalyDetection/fast
 
+anomaly_detection_util.o: anomaly_detection_util.cpp.o
+.PHONY : anomaly_detection_util.o
+
+# target to build an object file
+anomaly_detection_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o
+.PHONY : anomaly_detection_util.cpp.o
+
+anomaly_detection_util.i: anomaly_detection_util.cpp.i
+.PHONY : anomaly_detection_util.i
+
+# target to preprocess a source file
+anomaly_detection_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.i
+.PHONY : anomaly_detection_util.cpp.i
+
+anomaly_detection_util.s: anomaly_detection_util.cpp.s
+.PHONY : anomaly_detection_util.s
+
+# target to generate assembly for a file
+anomaly_detection_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.s
+.PHONY : anomaly_detection_util.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AnomalyDetection"
+	@echo "... anomaly_detection_util.o"
+	@echo "... anomaly_detection_util.i"
+	@echo "... anomaly_detection_util.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
