@@ -3,4 +3,5 @@ project(AnomalyDetection)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(AnomalyDetection main.cpp)
+add_executable(AnomalyDetection main.cpp anomaly_detection_util.cpp)
+set(SOURCE_FILES anomaly_detection_util.cpp )
