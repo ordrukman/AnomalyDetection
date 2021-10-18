@@ -1,4 +1,4 @@
-# Install script for directory: /home/ordrukman/CLionProjects/AnomalyDetection
+# Install script for directory: /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ordrukman/CLionProjects/AnomalyDetection/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
