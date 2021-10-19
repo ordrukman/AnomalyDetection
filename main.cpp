@@ -5,7 +5,7 @@
 using namespace std;
 
 bool wrong(float val, float expected){
-    return val<expected-0.001 || val>expected+0.001;
+    return val<expected-0.005 || val>expected+0.005;
 }
 
 // this is a simple test to put you on the right track

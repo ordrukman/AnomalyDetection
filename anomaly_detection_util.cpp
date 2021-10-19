@@ -64,8 +64,8 @@ float pearson(float* x, float* y, int size){
         std::cout << "Can't calculate pearson - array is empty" << std::endl;
         return 0;
     }
-    float pearson = cov(x, y, size)/(sigX*sigY);
-    return pearson;
+    float pear = cov(x, y, size)/(sigX*sigY);
+    return pear;
 }
 
 // performs a linear regression and returns the line equation
@@ -95,7 +95,7 @@ float dev(Point p,Point** points, int size){
 
 // returns the deviation between point p and the line
 float dev(Point p,Line l){
-    float dis = abs(p.y - l.f(p.x));
+    float dis = fabs(p.y - l.f(p.x));
 	return dis;
 }
 
