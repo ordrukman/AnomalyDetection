@@ -1,8 +1,8 @@
 /*
- * animaly_detection_util.cpp
+ * anomaly_detection_util.cpp
  *
  * Author:
- * Or Drukman @@@@@@@@@
+ * Or Drukman 209090000
  * Yotam Levin 313248916
  */
 
