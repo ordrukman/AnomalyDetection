@@ -82,13 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/MainTrain.cpp">
+			<Option target="AnomalyDetection"/>
+		</Unit>
 		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/anomaly_detection_util.cpp">
 			<Option target="AnomalyDetection"/>
 		</Unit>
 		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/anomaly_detection_util.h">
-			<Option target="AnomalyDetection"/>
-		</Unit>
-		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/main.cpp">
 			<Option target="AnomalyDetection"/>
 		</Unit>
 		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/CMakeLists.txt">

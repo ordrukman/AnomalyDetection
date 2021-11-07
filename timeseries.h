@@ -15,19 +15,30 @@ public:
     vector<vector<string>> table;
 
     TimeSeries(const char* CSVfileName){
+
+        // Load CSV
         ifstream csvData;
         csvData.open(CSVfileName);
         if (csvData.fail()) {
-            cout << "YES";
+            cout << "FAILED";
         }
         size_t pos;
         string field;
         string line;
         int i = 0;
+
+        // Read from CSV line by line
         while (csvData.good()) {
             getline(csvData, line, '\n');
+
+            // Ignore last empty row
+            if (line.size() < 2) {
+                break;
+            }
             table.push_back(vector<string>());
             pos = 0;
+
+            // Read fields one by one
             while ((pos = line.find(',')) != string::npos) {
                 field = line.substr(0,pos);
                 table[i].push_back(field);
@@ -35,9 +46,8 @@ public:
             }
             table[i].push_back(line);
             i++;
-            cout << "HI" << "";
-
         }
+        csvData.close();
     }
 
     vector<vector<string>> getTable() const {
@@ -49,9 +59,10 @@ public:
     }
 
     int numOfRows() const{
-        return this->table.size();
+        return this->table.size()-1;
     }
 
+    // Get the index of a certain feature
     int getFeatureNum(string feature) const{
         for (int i = 0; i < numOfFeatures(); i++) {
             if (this->table[0][i] == feature) {
@@ -65,15 +76,19 @@ public:
         return this->table[0][index];
     }
 
+    // Get a vector of values for a certain feature
     float* getValueVector(const string& feature) const{
         float* values = new float[numOfRows()];
+        int j = getFeatureNum(feature);
+
         // Start from 1 to ignore feature names
-        for (int i = 1; i < numOfRows(); i++) {
-            values[i] = stof(this->table[i][getFeatureNum(feature)]);
+        for (int i = 1; i <= numOfRows(); i++) {
+            values[i-1] = stof(this->table[i][j]);
         }
         return values;
     }
 
+    // Return all vector values for all features
     vector<float*> getAllValuesVectors() const{
         vector<float*> vec;
         for (int i = 0; i < numOfFeatures(); i++) {

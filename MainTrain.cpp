@@ -4,6 +4,7 @@
 #include <vector>
 #include "AnomalyDetector.h"
 #include "SimpleAnomalyDetector.h"
+#include "SimpleAnomalyDetector.cpp"
 #include <fstream>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
@@ -50,8 +51,10 @@ void checkCorrelationTrain(correlatedFeatures c,string f1, string f2, float a, f
 				cout<<f1<<"-"<<f2<<" wrong correlation detected (-5)"<<endl;
 			if(c.lin_reg.a<a-0.5f || c.lin_reg.a>a+0.5f)
 				cout<<f1<<"-"<<f2<<" wrong value of line_reg.a (-5)"<<endl;
-			if(c.lin_reg.b<b-0.5f || c.lin_reg.b>b+0.5f)
-				cout<<f1<<"-"<<f2<<" wrong value of line_reg.b (-5)"<<endl;
+			if(c.lin_reg.b<b-0.5f || c.lin_reg.b>b+0.5f) {
+                //printf("%f and %f\n", a, b);
+                cout << f1 << "-" << f2 << " wrong value of line_reg.b (-5)" << endl;
+            }
 			if(c.threshold>0.3)
 				cout<<f1<<"-"<<f2<<" wrong threshold detected (-5)"<<endl;
 		}

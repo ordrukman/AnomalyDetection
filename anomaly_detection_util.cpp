@@ -84,6 +84,8 @@ Line linear_reg(Point** points, int size){
     float a = cov(arrX, arrY, size)/var(arrX, size);
     float b = avg(arrY, size) - a * avg(arrX, size);
     Line l(a, b);
+    delete [] arrX;
+    delete [] arrY;
 	return l;
 }
 

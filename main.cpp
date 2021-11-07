@@ -14,7 +14,7 @@ using namespace std;
 
 // this is a simple test to put you on the right track
 int main() {
-    TimeSeries* ts = new TimeSeries("C:\\Users\\yolev\\Desktop\\untitled\\Book1.csv");
+    TimeSeries* ts = new TimeSeries("/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/Book1.csv");
     SimpleAnomalyDetector* sad = new SimpleAnomalyDetector();
     sad->learnNormal(*ts);
     cout << "YES";
