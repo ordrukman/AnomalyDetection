@@ -129,6 +129,30 @@ AnomalyDetection/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/build
 .PHONY : AnomalyDetection/fast
 
+MainTrain.o: MainTrain.cpp.o
+.PHONY : MainTrain.o
+
+# target to build an object file
+MainTrain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o
+.PHONY : MainTrain.cpp.o
+
+MainTrain.i: MainTrain.cpp.i
+.PHONY : MainTrain.i
+
+# target to preprocess a source file
+MainTrain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.i
+.PHONY : MainTrain.cpp.i
+
+MainTrain.s: MainTrain.cpp.s
+.PHONY : MainTrain.s
+
+# target to generate assembly for a file
+MainTrain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.s
+.PHONY : MainTrain.cpp.s
+
 anomaly_detection_util.o: anomaly_detection_util.cpp.o
 .PHONY : anomaly_detection_util.o
 
@@ -153,30 +177,6 @@ anomaly_detection_util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.s
 .PHONY : anomaly_detection_util.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/main.cpp.s
-.PHONY : main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AnomalyDetection"
+	@echo "... MainTrain.o"
+	@echo "... MainTrain.i"
+	@echo "... MainTrain.s"
 	@echo "... anomaly_detection_util.o"
 	@echo "... anomaly_detection_util.i"
 	@echo "... anomaly_detection_util.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 
