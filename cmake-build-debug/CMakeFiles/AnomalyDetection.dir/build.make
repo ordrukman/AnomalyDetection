@@ -66,18 +66,18 @@ include CMakeFiles/AnomalyDetection.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/AnomalyDetection.dir/flags.make
 
-CMakeFiles/AnomalyDetection.dir/main.cpp.o: CMakeFiles/AnomalyDetection.dir/flags.make
-CMakeFiles/AnomalyDetection.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AnomalyDetection.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AnomalyDetection.dir/main.cpp.o -c /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/main.cpp
+CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o: CMakeFiles/AnomalyDetection.dir/flags.make
+CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o: ../MainTrain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o -c /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/MainTrain.cpp
 
-CMakeFiles/AnomalyDetection.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AnomalyDetection.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/main.cpp > CMakeFiles/AnomalyDetection.dir/main.cpp.i
+CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/MainTrain.cpp > CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.i
 
-CMakeFiles/AnomalyDetection.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AnomalyDetection.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/main.cpp -o CMakeFiles/AnomalyDetection.dir/main.cpp.s
+CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/MainTrain.cpp -o CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.s
 
 CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o: CMakeFiles/AnomalyDetection.dir/flags.make
 CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o: ../anomaly_detection_util.cpp
@@ -94,13 +94,13 @@ CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.s: cmake_force
 
 # Object files for target AnomalyDetection
 AnomalyDetection_OBJECTS = \
-"CMakeFiles/AnomalyDetection.dir/main.cpp.o" \
+"CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o" \
 "CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o"
 
 # External object files for target AnomalyDetection
 AnomalyDetection_EXTERNAL_OBJECTS =
 
-AnomalyDetection: CMakeFiles/AnomalyDetection.dir/main.cpp.o
+AnomalyDetection: CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o
 AnomalyDetection: CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o
 AnomalyDetection: CMakeFiles/AnomalyDetection.dir/build.make
 AnomalyDetection: CMakeFiles/AnomalyDetection.dir/link.txt
