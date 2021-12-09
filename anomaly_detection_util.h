@@ -1,7 +1,10 @@
+/*
+ * Or Drukman 209090000
+ * Yotam Levin 313248916
+ */
 
 #ifndef ANOMALYDETECTORUTIL_H_
 #define ANOMALYDETECTORUTIL_H_
-
 
 float avg(float* x, int size);
 
