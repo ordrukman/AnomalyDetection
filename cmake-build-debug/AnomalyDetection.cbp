@@ -91,6 +91,12 @@
 		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/anomaly_detection_util.h">
 			<Option target="AnomalyDetection"/>
 		</Unit>
+		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/minCircle.cpp">
+			<Option target="AnomalyDetection"/>
+		</Unit>
+		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/minCircle.h">
+			<Option target="AnomalyDetection"/>
+		</Unit>
 		<Unit filename="/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

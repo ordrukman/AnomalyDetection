@@ -81,12 +81,12 @@ clean: CMakeFiles/AnomalyDetection.dir/clean
 CMakeFiles/AnomalyDetection.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target AnomalyDetection"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target AnomalyDetection"
 .PHONY : CMakeFiles/AnomalyDetection.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/AnomalyDetection.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/AnomalyDetection.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/AnomalyDetection.dir/rule

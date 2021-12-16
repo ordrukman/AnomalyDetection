@@ -45,7 +45,7 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
 
     // For each feature, iterates through all others to find the most correlated
     for (int i = 0; i < ts.numOfFeatures(); i++) {
-        maxCor = 0.9;
+        maxCor = 0.5;
         indCor = -1;
         for (int j = i + 1; j < ts.numOfFeatures(); j++) {
             if ((p = abs(pearson(vec[i], vec[j], ts.numOfRows()))) > maxCor) {
@@ -59,15 +59,13 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
 
             // Linear Regression:
             Point** points = getPoints(vec[i], vec[indCor], ts.numOfRows());
-            Line line = linear_reg(points, ts.numOfRows());
 
             // Threshold (deviation):
-            float maxDev = maxDeviation(points, line, ts.numOfRows());
-            correlatedFeatures c = {.feature1 = ts.getFeatureName(i), .feature2 = ts.getFeatureName(indCor),
-                                    .corrlation = maxCor, .lin_reg = line, .threshold = maxDev * 1.1f};
+            correlatedFeatures c = addCorrelatedFeatures(ts, points, ts.getFeatureName(i), ts.getFeatureName(indCor), maxCor);
             this->cf.push_back(c);
-            for (int i = 0; i < ts.numOfRows(); ++i) {
-                delete points[i];
+
+            for (int k = 0; k < ts.numOfRows(); ++k) {
+                delete points[k];
             }
         }
     }
@@ -76,6 +74,19 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
     for (int i = 0; i < vec.size(); ++i) {
         delete [] vec[i];
     }
+}
+
+// Adds a new correlation between features
+correlatedFeatures SimpleAnomalyDetector::addCorrelatedFeatures(const TimeSeries& ts, Point** points, string feature_1, string feature_2, float cor_val) {
+    Line line = linear_reg(points, ts.numOfRows());
+    float maxDev = maxDeviation(points, line, ts.numOfRows());
+    correlatedFeatures c;
+    c.feature1 = feature_1;
+    c.feature2 = feature_2;
+    c.corrlation = cor_val;
+    c.lin_reg = line;
+    c.threshold = maxDev * 1.1f;
+    return c;
 }
 
 // Detects anomalies from data
@@ -88,16 +99,24 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
             correlatedFeatures c = this->getNormalModel()[j];
             Point* p = new Point(stof(ts.getTable()[i][ts.getFeatureNum(c.feature1)]),
                                 stof(ts.getTable()[i][ts.getFeatureNum(c.feature2)]));
-            float pointDev = dev(*p, c.lin_reg);
-            delete p;
 
             // If a large deviation was found
-            if (pointDev > c.threshold) {
+            if (checkAnomaly(p, c)) {
                 AnomalyReport* ar = new AnomalyReport(c.feature1 + "-" + c.feature2, i);
                 anomalyVec.push_back(*ar);
             }
+            delete p;
         }
     }
     return anomalyVec;
+}
+
+bool SimpleAnomalyDetector::checkAnomaly(Point *p, correlatedFeatures c) {
+    float pointDev = dev(*p, c.lin_reg);
+    if (pointDev > c.threshold) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
