@@ -111,9 +111,10 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
     return anomalyVec;
 }
 
+// Check if an anomaly has occurred
 bool SimpleAnomalyDetector::checkAnomaly(Point *p, correlatedFeatures c) {
     float pointDev = dev(*p, c.lin_reg);
-    if (pointDev > c.threshold) {
+    if (pointDev >= c.threshold) {
         return true;
     } else {
         return false;

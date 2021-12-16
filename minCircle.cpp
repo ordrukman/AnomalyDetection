@@ -1,3 +1,8 @@
+/*
+ * Or Drukman 209090000
+ * Yotam Levin 313248916
+ */
+
 #include "minCircle.h"
 #include <random>
 #include <vector>
