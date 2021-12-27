@@ -18,6 +18,7 @@ struct correlatedFeatures{
 	float corrlation;
 	Line lin_reg;
 	float threshold;
+    float center_x, center_y;
 };
 
 
@@ -33,7 +34,9 @@ public:
 	vector<correlatedFeatures> getNormalModel(){
 		return cf;
 	}
-
+protected:
+    virtual correlatedFeatures addCorrelatedFeatures(const TimeSeries& ts, Point** points, string feature_1, string feature_2, float cor_val);
+    virtual bool checkAnomaly(Point* p, correlatedFeatures c);
 };
 
 
