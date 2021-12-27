@@ -4,6 +4,8 @@
  */
 
 #include "HybridAnomalyDetector.h"
+#include "SimpleAnomalyDetector.h"
+#include "SimpleAnomalyDetector.cpp"
 
 HybridAnomalyDetector::HybridAnomalyDetector() {
 	// TODO Auto-generated constructor stub

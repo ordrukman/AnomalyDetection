@@ -4,22 +4,13 @@ set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
 
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/MainTrain.cpp" "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o"
-  "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/anomaly_detection_util.cpp" "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o"
-  "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/minCircle.cpp" "/home/yolevin/Documents/ComputerScience_BarIlan/Advanced_Programming/cmake-build-debug/CMakeFiles/AnomalyDetection.dir/minCircle.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
   )
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/ordrukman/CLionProjects/anomalyEx/MainTrain.cpp" "CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o" "gcc" "CMakeFiles/AnomalyDetection.dir/MainTrain.cpp.o.d"
+  "/home/ordrukman/CLionProjects/anomalyEx/anomaly_detection_util.cpp" "CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o" "gcc" "CMakeFiles/AnomalyDetection.dir/anomaly_detection_util.cpp.o.d"
+  "/home/ordrukman/CLionProjects/anomalyEx/minCircle.cpp" "CMakeFiles/AnomalyDetection.dir/minCircle.cpp.o" "gcc" "CMakeFiles/AnomalyDetection.dir/minCircle.cpp.o.d"
   )
 
 # Targets to which this target links.
