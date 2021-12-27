@@ -129,6 +129,30 @@ AnomalyDetection/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/build
 .PHONY : AnomalyDetection/fast
 
+CLI.o: CLI.cpp.o
+.PHONY : CLI.o
+
+# target to build an object file
+CLI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/CLI.cpp.o
+.PHONY : CLI.cpp.o
+
+CLI.i: CLI.cpp.i
+.PHONY : CLI.i
+
+# target to preprocess a source file
+CLI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/CLI.cpp.i
+.PHONY : CLI.cpp.i
+
+CLI.s: CLI.cpp.s
+.PHONY : CLI.s
+
+# target to generate assembly for a file
+CLI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AnomalyDetection.dir/build.make CMakeFiles/AnomalyDetection.dir/CLI.cpp.s
+.PHONY : CLI.cpp.s
+
 MainTrain.o: MainTrain.cpp.o
 .PHONY : MainTrain.o
 
@@ -210,6 +234,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AnomalyDetection"
+	@echo "... CLI.o"
+	@echo "... CLI.i"
+	@echo "... CLI.s"
 	@echo "... MainTrain.o"
 	@echo "... MainTrain.i"
 	@echo "... MainTrain.s"

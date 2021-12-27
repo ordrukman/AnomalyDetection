@@ -15,6 +15,8 @@ public:
 	CLI(DefaultIO* dio);
 	void start();
 	virtual ~CLI();
+
+    void uploadCSV();
 };
 
 #endif /* CLI_H_ */

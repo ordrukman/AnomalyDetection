@@ -12,6 +12,13 @@
 
 using namespace std;
 
+class DetectorFeatures{
+public:
+    float threshold;
+    TimeSeries* trainTS, testTS;
+    AnomalyReport* report;
+};
+
 class DefaultIO{
 public:
 	virtual string read()=0;
@@ -21,20 +28,103 @@ public:
 	virtual ~DefaultIO(){}
 
 	// you may add additional methods here
+    virtual void createFile(string fileName) {
+        ofstream file(fileName);
+        string line = read();
+        while (line != "done") {
+            file << line << endl;
+            line = read();
+        }
+        file.close();
+    }
 };
 
-// you may add here helper classes
+class StandardIO:public DefaultIO {
+    virtual string read() {
+        string s;
+        cin >> s;
+        return s;
+    }
+
+    virtual void write(string text) {
+        cout << text << endl;
+    }
+
+    virtual void write(float f) {
+        cout << f << endl;
+    }
+
+    virtual void read(float* f) {
+        size_t pos = 0;
+        int i = 0;
+        string all_floats = read();
+        string val;
+
+        while ((pos = all_floats.find(',')) != string::npos) {
+            val = all_floats.substr(0,pos);
+            f[i] = stof(val);
+            all_floats.erase(0, pos + 1);
+            i++;
+        }
+        f[i] = stof(all_floats);
+    }
+};
+
+
 
 
 // you may edit this class
 class Command{
-	DefaultIO* dio;
+protected:
+    DefaultIO* dio;
 public:
-	Command(DefaultIO* dio):dio(dio){}
-	virtual void execute()=0;
+    const string description;
+    Command(DefaultIO* dio, string description):dio(dio), description(description){}
+	virtual void execute(DetectorFeatures* df)=0;
 	virtual ~Command(){}
 };
 
+
+class UploadCSV:public Command {
+public:
+    UploadCSV(DefaultIO* dio): Command(dio, "Uploads a CSV"){}
+    virtual void execute(DetectorFeatures* df){
+        dio->write("Please upload your local train CSV file.");
+        dio->createFile("trainCSV.csv");
+        TimeSeries* trainTable = new TimeSeries("TrainSCV.csv");
+        df->testTS = *trainTable;
+        dio->write("Upload complete.");
+        dio->write("Please upload your local test CSV file.");
+        dio->createFile("testCSV.csv");
+        TimeSeries* testTable = new TimeSeries("TestSCV.csv");
+        df->testTS = *testTable;
+        dio->write("Upload complete.");
+    }
+};
+
+
+class SetCorrelation:public Command {
+public:
+    SetCorrelation(DefaultIO* dio): Command(dio, "Updates correlation threshold"){}
+    virtual void execute(DetectorFeatures* df){
+        dio->write("The current correlation threshold is " + to_string(df->threshold));
+        float newThresh = stof(dio->read());
+        while ((newThresh < 0) || (newThresh > 1)) {
+            dio->write("please choose a value between 0 and 1.");
+            newThresh = stof(dio->read());
+        }
+        df->threshold = newThresh;
+    }
+};
+
+
+class RunDetector:public Command {
+public:
+    RunDetector(DefaultIO* dio): Command(dio, "Executes the detector"){}
+    virtual void execute(DetectorFeatures* df){
+        // STOPPED HERE! OR IS KING
+    }
+};
 // implement here your command classes
 
 

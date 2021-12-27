@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/CLI.cpp">
+			<Option target="AnomalyDetection"/>
+		</Unit>
+		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/CLI.h">
+			<Option target="AnomalyDetection"/>
+		</Unit>
 		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/MainTrain.cpp">
 			<Option target="AnomalyDetection"/>
 		</Unit>
