@@ -17,6 +17,7 @@ using namespace std;
 class TimeSeries{
 public:
     vector<vector<string>> table;
+    TimeSeries(){};
 
     TimeSeries(const char* CSVfileName){
 

@@ -10,13 +10,11 @@ using namespace std;
 
 class CLI {
 	DefaultIO* dio;
-	// you can add data members
+	vector<Command*> allCommands;
 public:
 	CLI(DefaultIO* dio);
 	void start();
 	virtual ~CLI();
-
-    void uploadCSV();
 };
 
 #endif /* CLI_H_ */

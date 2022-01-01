@@ -1,40 +1,36 @@
 #include "CLI.h"
 
 CLI::CLI(DefaultIO* dio) {
+    this->dio = dio;
+    this->allCommands.push_back(new UploadCSV(dio));
+    this->allCommands.push_back(new SetCorrelationSettings(dio));
+    this->allCommands.push_back(new RunDetector(dio));
+    this->allCommands.push_back(new PresentAnomalies(dio));
+    this->allCommands.push_back(new UploadAnomaliesAndAnalyze(dio));
+    this->allCommands.push_back(new Exit(dio));
 }
 
 void CLI::start(){
-    int userInput;
-    while (true) {
-        cout << "Welcome to the Anomaly Detection Server.\n"
-                "Please choose an option:\n"
-                "1. upload a time series csv file\n"
-                "2. algorithm settings\n"
-                "3. detect anomalies\n"
-                "4. display results\n"
-                "5. upload anomalies and analyze results\n"
-                "6. exit" << endl;
-        cin >> userInput;
-        switch (userInput) {
-            case 1:
-                UploadCSV *uploadCSV = new UploadCSV(dio);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                return;
+    DetectorFeatures detectorFeatures;
+    int userInput = 0;
+    while (userInput != 6) {
+        dio->write("Welcome to the Anomaly Detection Server.\n");
+        dio->write("Please choose an option:\n");
+        for (int i = 0; i < this->allCommands.size(); ++i) {
+            dio->write(to_string(i + 1) + ". " + allCommands[i]->description + "\n");
+        }
+        userInput = stoi(dio->read());
+        if (userInput <= allCommands.size() && userInput >= 1) {
+            allCommands[userInput - 1]->execute(&detectorFeatures);
         }
     }
 }
 
 
 CLI::~CLI() {
+    for(int i = 0; i < this->allCommands.size(); i++){
+        delete this->allCommands[i];
+    }
 }
 
 

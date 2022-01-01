@@ -9,6 +9,7 @@
 
 SimpleAnomalyDetector::SimpleAnomalyDetector() {
     this->cf = vector<correlatedFeatures>();
+    this->threshold = 0.9;
 }
 
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
@@ -119,5 +120,10 @@ bool SimpleAnomalyDetector::checkAnomaly(Point *p, correlatedFeatures c) {
     } else {
         return false;
     }
+}
+
+// Set new threshold
+bool SimpleAnomalyDetector::setThreshold(float thresh) {
+    this->threshold = thresh;
 }
 
