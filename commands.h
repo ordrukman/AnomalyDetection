@@ -16,7 +16,8 @@ class DetectorFeatures{
 public:
     float threshold;
     TimeSeries* trainTS, testTS;
-    AnomalyReport* report;
+    vector<AnomalyReport> report;
+
 };
 
 class DefaultIO{
@@ -122,11 +123,26 @@ class RunDetector:public Command {
 public:
     RunDetector(DefaultIO* dio): Command(dio, "Executes the detector"){}
     virtual void execute(DetectorFeatures* df){
-        // STOPPED HERE! OR IS KING
+        HybridAnomalyDetector* hd = new HybridAnomalyDetector();
+        hd->setThreshold(df->threshold);
+        hd->learnNormal(*df->trainTS);
+        df->report = hd->detect(df->testTS);
+        dio->write("anomaly detection complete.");
     }
 };
-// implement here your command classes
 
+
+class PresentAnomalies:public Command {
+public:
+    PresentAnomalies(DefaultIO* dio): Command(dio, "Presents all anomalies found"){}
+    virtual void execute(DetectorFeatures* df){
+        vector<AnomalyReport>::iterator  it;
+        for(it = df->report.begin(); it != df->report.end(); it++) {
+            dio->write(to_string(it->timeStep) + "\t" + to_string(it->description));
+        }
+        dio->write("Done.");
+    }
+};
 
 
 #endif /* COMMANDS_H_ */
