@@ -88,6 +88,12 @@
 		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/CLI.h">
 			<Option target="AnomalyDetection"/>
 		</Unit>
+		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/HybridAnomalyDetector.cpp">
+			<Option target="AnomalyDetection"/>
+		</Unit>
+		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/HybridAnomalyDetector.h">
+			<Option target="AnomalyDetection"/>
+		</Unit>
 		<Unit filename="/home/ordrukman/CLionProjects/anomalyEx/MainTrain.cpp">
 			<Option target="AnomalyDetection"/>
 		</Unit>

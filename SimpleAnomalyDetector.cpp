@@ -57,7 +57,6 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
 
         // If a correlation was found
         if (indCor != -1) {
-
             // Linear Regression:
             Point** points = getPoints(vec[i], vec[indCor], ts.numOfRows());
 
@@ -95,8 +94,8 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
     vector<AnomalyReport> anomalyVec;
 
     // For each row, iterates through all correlated features and checks for large deviation
-	for (int i = 1; i <= ts.numOfRows(); i++) {
-        for (int j = 0; j < this->getNormalModel().size(); j++) {
+    for (int j = 0; j < this->getNormalModel().size(); j++) {
+        for (int i = 1; i <= ts.numOfRows(); i++) {
             correlatedFeatures c = this->getNormalModel()[j];
             Point* p = new Point(stof(ts.getTable()[i][ts.getFeatureNum(c.feature1)]),
                                 stof(ts.getTable()[i][ts.getFeatureNum(c.feature2)]));
@@ -109,6 +108,9 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
             delete p;
         }
     }
+    //for (int i = 0; i < this->getNormalModel().size(); ++i) {
+    //   cout << this->getNormalModel()[i].feature1;
+    //}
     return anomalyVec;
 }
 
@@ -123,7 +125,7 @@ bool SimpleAnomalyDetector::checkAnomaly(Point *p, correlatedFeatures c) {
 }
 
 // Set new threshold
-bool SimpleAnomalyDetector::setThreshold(float thresh) {
+void SimpleAnomalyDetector::setThreshold(float thresh) {
     this->threshold = thresh;
 }
 

@@ -5,10 +5,12 @@
 
 #include<iostream>
 #include <string.h>
+#include <unistd.h>
 
 #include <fstream>
 #include <vector>
 #include "HybridAnomalyDetector.h"
+//#include "HybridAnomalyDetector.cpp"
 
 using namespace std;
 
@@ -16,7 +18,7 @@ class GivenReport{
 public:
     int startTimeStep;
     int endTimeStep;
-    bool isExistAnyDetectForThisReport;
+    bool isExistAnyDetectForThisReport = false;
 };
 
 class CompressReport{
@@ -24,14 +26,15 @@ public:
     string description;
     int startTimeStep;
     int endTimeStep;
-    bool isReal;
+    bool isReal = false;
 
 };
 
 struct DetectorFeatures{
 public:
-    float threshold;
-    TimeSeries* trainTS, testTS;
+    float threshold = 0.9;
+    const TimeSeries* trainTS;
+    const TimeSeries* testTS;
     vector<AnomalyReport> anomalyReport;
 };
 
@@ -47,8 +50,12 @@ public:
     virtual void createFile(string fileName) {
         ofstream file(fileName);
         string line = read();
+        if (line != "done") {
+            file << line;
+            line = read();
+        }
         while (line != "done") {
-            file << line << endl;
+            file << endl << line;
             line = read();
         }
         file.close();
@@ -121,16 +128,16 @@ class UploadCSV:public Command {
 public:
     UploadCSV(DefaultIO* dio): Command(dio, "upload a time series csv file"){}
     virtual void execute(DetectorFeatures* df){
-        dio->write("Please upload your local train CSV file.");
-        dio->createFile("trainCSV.csv");
-        TimeSeries* trainTable = new TimeSeries("TrainSCV.csv");
-        df->testTS = *trainTable;
-        dio->write("Upload complete.");
-        dio->write("Please upload your local test CSV file.");
-        dio->createFile("testCSV.csv");
-        TimeSeries* testTable = new TimeSeries("TestSCV.csv");
-        df->testTS = *testTable;
-        dio->write("Upload complete.");
+        dio->write("Please upload your local train CSV file.\n");
+        dio->createFile("TrainCSV.csv");
+        TimeSeries* trainTable = new TimeSeries(realpath("TrainCSV.csv", NULL));
+        df->trainTS = trainTable;
+        dio->write("Upload complete.\n");
+        dio->write("Please upload your local test CSV file.\n");
+        dio->createFile("TestCSV.csv");
+        TimeSeries* testTable = new TimeSeries(realpath("TestCSV.csv", NULL));
+        df->testTS = testTable;
+        dio->write("Upload complete.\n");
     }
 };
 
@@ -139,7 +146,11 @@ class SetCorrelationSettings:public Command {
 public:
     SetCorrelationSettings(DefaultIO* dio): Command(dio, "algorithm settings"){}
     virtual void execute(DetectorFeatures* df){
-        dio->write("The current correlation threshold is " + to_string(df->threshold) + "\n");
+        string thresh = to_string(df->threshold);
+        thresh.erase(thresh.find_last_not_of('0') + 1, std::string::npos);
+        thresh.erase(thresh.find_last_not_of('.') + 1, std::string::npos);
+        dio->write("The current correlation threshold is " + thresh + "\n");
+        dio->write("Type a new threshold\n");
         float newThresh = stof(dio->read());
         while ((newThresh < 0) || (newThresh > 1)) {
             dio->write("please choose a value between 0 and 1.\n");
@@ -157,8 +168,8 @@ public:
         HybridAnomalyDetector* hd = new HybridAnomalyDetector();
         hd->setThreshold(df->threshold);
         hd->learnNormal(*df->trainTS);
-        df->anomalyReport = hd->detect(df->testTS);
-        dio->write("anomaly detection complete.");
+        df->anomalyReport = hd->detect(*df->testTS);
+        dio->write("anomaly detection complete.\n");
     }
 };
 
@@ -169,19 +180,19 @@ public:
     virtual void execute(DetectorFeatures* df){
         vector<AnomalyReport>::iterator  it;
         for(it = df->anomalyReport.begin(); it != df->anomalyReport.end(); it++) {
-            dio->write(to_string(it->timeStep) + "\t" + it->description);
+            dio->write(to_string(it->timeStep) + "\t" + it->description + "\n");
         }
-        dio->write("Done.");
+        dio->write("Done.\n");
     }
 };
 
 class UploadAnomaliesAndAnalyze:public Command {
 public:
-    UploadAnomaliesAndAnalyze(DefaultIO* dio): Command(dio, "Upload anomalies and analyze results"){}
+    UploadAnomaliesAndAnalyze(DefaultIO* dio): Command(dio, "upload anomalies and analyze results"){}
     virtual void execute(DetectorFeatures* df){
-        dio->write("Please upload your local anomalies file.");
+        dio->write("Please upload your local anomalies file.\n");
         vector<GivenReport> realReports = dio->createRealReportVector();
-        dio->write("Upload complete.");
+        dio->write("Upload complete.\n");
         vector<CompressReport> compressedReports = compressR(df->anomalyReport);
         for (int i = 0; i < compressedReports.size(); ++i) {
             bool realDetection = false;
@@ -203,7 +214,7 @@ public:
                 TP++;
             }
         }
-        int N = df->testTS.numOfRows() - sum;
+        int N = df->testTS->numOfRows() - sum;
         int FP = 0;
         for (int i = 0; i < compressedReports.size(); ++i) {
             if (!compressedReports[i].isReal) {
@@ -212,13 +223,20 @@ public:
         }
         float TPR = ((int)(1000.0*TP/P))/1000.0f;
         float FPR = ((int)(1000.0*FP/N))/1000.0f;
-        dio->write("True Positive Rate: " + to_string(TPR) + "\n");
-        dio->write("False Positive Rate: " + to_string(FPR) + "\n");
+        string TPR_str = to_string(TPR);
+        TPR_str.erase(TPR_str.find_last_not_of('0') + 1, std::string::npos);
+        TPR_str.erase(TPR_str.find_last_not_of('.') + 1, std::string::npos);
+        string FPR_str = to_string(FPR);
+        FPR_str.erase(FPR_str.find_last_not_of('0') + 1, std::string::npos);
+        FPR_str.erase(FPR_str.find_last_not_of('.') + 1, std::string::npos);
+        dio->write("True Positive Rate: " + TPR_str + "\n");
+        dio->write("False Positive Rate: " + FPR_str + "\n");
     }
 
-    bool checkCrossSection(int realReportStart,int realReportEnd,int givenReportStart, int givenReportEnd){
-        return (givenReportStart >= realReportStart && realReportEnd >= givenReportEnd);
-    }// TODO semi section
+    bool checkCrossSection(int realReportStart, int realReportEnd, int givenReportStart, int givenReportEnd){
+        return ((givenReportStart >= realReportStart && realReportEnd >= givenReportStart) ||
+                (givenReportEnd >= realReportStart && realReportEnd >= givenReportEnd));
+    }
 
     vector<CompressReport> compressR(vector<AnomalyReport> anomalyReport) {
         vector<CompressReport> compressReports;

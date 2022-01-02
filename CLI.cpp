@@ -17,9 +17,11 @@ void CLI::start(){
         dio->write("Welcome to the Anomaly Detection Server.\n");
         dio->write("Please choose an option:\n");
         for (int i = 0; i < this->allCommands.size(); ++i) {
-            dio->write(to_string(i + 1) + ". " + allCommands[i]->description + "\n");
+            dio->write(to_string(i + 1) + "." + allCommands[i]->description + "\n");
         }
-        userInput = stoi(dio->read());
+        string s = dio->read();
+        //cout << s << endl;
+        userInput = stoi(s);
         if (userInput <= allCommands.size() && userInput >= 1) {
             allCommands[userInput - 1]->execute(&detectorFeatures);
         }

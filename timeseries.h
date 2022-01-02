@@ -35,7 +35,6 @@ public:
         // Read from CSV line by line
         while (csvData.good()) {
             getline(csvData, line, '\n');
-
             // Ignore last empty row
             if (line.size() < 2) {
                 break;
