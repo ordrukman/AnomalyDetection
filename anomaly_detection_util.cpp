@@ -17,7 +17,7 @@ float avg(float* x, int size){
         return 0;
     }
     float average = sum/size;
-	return average;
+    return average;
 }
 
 // returns the variance of X and Y
@@ -34,7 +34,7 @@ float var(float* x, int size){
     }
     float u = sum/size;
     float v = sumSqr/size - pow(u, 2);
-	return v;
+    return v;
 }
 
 // returns the covariance of X and Y
@@ -83,7 +83,7 @@ Line linear_reg(Point** points, int size){
     Line l(a, b);
     delete [] arrX;
     delete [] arrY;
-	return l;
+    return l;
 }
 
 // returns the deviation between point p and the line equation of the points
@@ -95,8 +95,6 @@ float dev(Point p,Point** points, int size){
 // returns the deviation between point p and the line
 float dev(Point p,Line l){
     float dis = fabs(p.y - l.f(p.x));
-	return dis;
+    return dis;
 }
-
-
 
