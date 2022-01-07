@@ -46,6 +46,20 @@ public:
     virtual ~DefaultIO(){}
 
     // you may add additional methods here
+//    virtual void createFile(string fileName) {
+//        ofstream file(fileName);
+//        string line = read();
+//        if (!(line == "done" || line == "done\n")) {
+//            file << line;
+//            line = read();
+//        }
+//        while (!(line == "done" || line == "done\n")) {
+//            file << line;
+//            line = read();
+//        }
+//        file.close();
+//    }
+
     virtual void createFile(string fileName) {
         ofstream file(fileName);
         string line = read();
@@ -53,9 +67,17 @@ public:
             file << line;
             line = read();
         }
+        string lastLine = line;
         while (!(line == "done" || line == "done\n")) {
-            file << endl << line;
             line = read();
+            if ((line == "done" || line == "done\n")) {
+                lastLine.erase(remove(lastLine.begin(), lastLine.end(), '\n'), lastLine.end());
+                file << lastLine; //(clean)
+
+            } else {
+                file << lastLine;
+            }
+            lastLine = line;
         }
         file.close();
     }
@@ -65,10 +87,13 @@ public:
         GivenReport newReport;
         int pos = 0;
         string line = read();
-        while (line != "done" || line != "done\n") {
+        while (line != "done" && line != "done\n") {
             pos = line.find(',');
-            newReport.startTimeStep =  stoi(line.substr(0,pos));
+            string temp = line.substr(0,pos);
+            //cout << temp << endl;
+            newReport.startTimeStep =  stoi(temp);
             line.erase(0, pos + 1);
+            //cout << line << endl;
             newReport.endTimeStep =  stoi(line);
             allRealReports.push_back(newReport);
             line = read();

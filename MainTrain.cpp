@@ -49,7 +49,7 @@ void readMenue(ofstream& out,int serverFD){
         string serverInput = readStr(serverFD);
         if(serverInput=="6.exit")
             done=true;
-        cout<<serverInput<<endl;
+        out<<serverInput<<endl;
     }
 }
 
@@ -84,7 +84,7 @@ void clientSide1(int port,string outputFile)throw (const char*){
     string input="6";
     writeStr(input,serverFD);
     close(serverFD);
-    cout<<"end of client 1"<<endl;
+    out<<"end of client 1"<<endl;
 }
 
 
@@ -96,47 +96,44 @@ void clientSide2(int port,string outputFile)throw (const char*){
     ifstream in("input.txt");
     string input="";
     while(input!="6"){
-        //cout << input + "1" << endl;
         readMenue(out,serverFD);
         getline(in,input);
         writeStr(input,serverFD);
-        cout << input << endl;
         if(input=="1"){
-            cout<<readStr(serverFD)<<endl; // please upload...
-            cout << "____" << endl;
+            out<<readStr(serverFD)<<endl; // please upload...
             while(input!="done"){
                 getline(in,input);
                 writeStr(input,serverFD);
             }
-            cout<<readStr(serverFD)<<endl; // Upload complete
-            cout<<readStr(serverFD)<<endl; // please upload...
+            out<<readStr(serverFD)<<endl; // Upload complete
+            out<<readStr(serverFD)<<endl; // please upload...
             input="";
             while(input!="done"){
                 getline(in,input);
                 writeStr(input,serverFD);
             }
-            cout<<readStr(serverFD)<<endl; // Upload complete
+            out<<readStr(serverFD)<<endl; // Upload complete
         }
 
         if(input=="3"){
-            cout<<readStr(serverFD)<<endl; // Anomaly... complete
+            out<<readStr(serverFD)<<endl; // Anomaly... complete
         }
         if(input=="5"){
-            cout<<readStr(serverFD)<<endl; // please upload...
+            out<<readStr(serverFD)<<endl; // please upload...
             while(input!="done"){
                 getline(in,input);
                 writeStr(input,serverFD);
             }
-            cout<<readStr(serverFD)<<endl; // Upload complete
-            cout<<readStr(serverFD)<<endl; // TPR
-            cout<<readStr(serverFD)<<endl; // FPR
+            out<<readStr(serverFD)<<endl; // Upload complete
+            out<<readStr(serverFD)<<endl; // TPR
+            out<<readStr(serverFD)<<endl; // FPR
         }
     }
     in.close();
     out.close();
 
     close(serverFD);
-    cout<<"end of client 2"<<endl;
+    out<<"end of client 2"<<endl;
 }
 
 size_t check(string outputFile,string expectedOutputFile){
